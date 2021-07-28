@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.colorWrapper {
+  background-color: #a8dadc;
+  width: 500px;
+  height: 500px;
+}
