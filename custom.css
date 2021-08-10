@@ -2,9 +2,15 @@
   margin: 0;
   padding: 0;
 }
-
 .colorWrapper {
   background-color: #a8dadc;
+  font-size: 2em;
   width: 500px;
   height: 500px;
+}
+.color {
+  color: #ffffff;
+  display: inline-block;
+  margin: 0 auto;
+  padding: 10px;
 }
