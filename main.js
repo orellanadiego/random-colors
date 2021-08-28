@@ -2,13 +2,17 @@
 ALL VARIABLES
 ======= */
 const hexaCodes = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-const btn = document.querySelector(".btn");
+const generate = document.querySelector(".btn-generate");
 const color = document.querySelector(".color");
 const backward = document.querySelector(".btn-backward");
 const forward = document.querySelector(".btn-forward");
-const hexColors = [];
 
-btn.addEventListener("click", function () {
+const hexColors = [];
+let forwardStack = [];
+let backwardStack = [];
+let currentColor = "";
+
+generate.addEventListener("click", function () {
   generateColor();
 });
 
@@ -26,12 +30,15 @@ forward.addEventListener("click", function () {
 /* =======
 ALL FUNCTIONS
 ======= */
-function generateColor() {
+
+// loop for new color.
+function loopColors(colorGenerated) {
   let hexColor = "#";
   for (let i = 0; i < 6; i++) {
     hexColor += hexaCodes[getRandomNumber()];
   }
   hexColors.push(hexColor);
+  // backwardStack.push(hexColor);
 
   console.log("====");
   console.log("New color: ", hexColor);
@@ -41,6 +48,15 @@ function generateColor() {
   console.log("Second time: ", hexColor);
   color.textContent = hexColor;
   document.querySelector(".colorWrapper").style.backgroundColor = hexColor;
+
+  if (generate) {
+    backwardStack.push(hexColor);
+  }
+  currentColor = hexColor;
+}
+
+function generateColor() {
+  loopColors();
 }
 
 function getRandomNumber() {
@@ -48,9 +64,31 @@ function getRandomNumber() {
 }
 
 function colorBackward() {
-  console.log("This is the backward button!");
+  if (backwardStack.length === 2) {
+    console.log("==== IF backward ====");
+    console.log(backwardStack);
+  } else {
+    console.log("==== BACKWARD ====");
+    console.log(forwardStack.push(currentColor));
+    console.log((currentColor = backwardStack.pop()));
+  }
+
+  // console.log("====");
+  // console.log("color in backward button: ", backwardStack);
+  // console.log("Current color: ", currentColor);
 }
 
 function colorForward() {
-  console.log("This is the forward button!");
+  if (!forwardStack.length) {
+    console.log("==== IF forward ====");
+    console.log(forwardStack);
+  } else {
+    console.log("==== FORWARD ====");
+    console.log(backwardStack.push(currentColor));
+    console.log((currentColor = forwardStack.pop()));
+  }
+
+  // console.log("====");
+  // console.log("color in forward button: ", forwardStack);
+  // console.log("Current color: ", currentColor);
 }
