@@ -10,13 +10,13 @@ const forward = document.querySelector(".btn-forward");
 const hexColors = [];
 let forwardStack = [];
 let backwardStack = [];
-let currentColor = "";
+let currentColor = [];
 
 /* =======
 BUTTON LISTENERS
 ======= */
 generate.addEventListener("click", function () {
-  generateColor();
+  loopColors();
 });
 
 backward.addEventListener("click", function () {
@@ -43,33 +43,34 @@ function loopColors() {
   console.log("====");
   console.log("New color: ", hexColor);
   console.log(hexColors);
-  console.log("Value of color in array: ", Object.keys(hexColors));
+  // console.log("Value of color in array: ", Object.keys(hexColors));
   console.log("Quantity of codes in array: ", hexColors.length);
-  console.log("Second time: ", hexColor);
   changeColor(hexColor);
 
   if (generate) {
     backwardStack.push(hexColor);
   }
-  currentColor = hexColor;
+  currentColor.push(hexColor);
+  console.log("This is current color: " + currentColor[0]);
 }
+// Get a random number based on lenght of array and convert it to a integer.
+function getRandomNumber() {
+  return Math.floor(Math.random() * hexaCodes.length);
+}
+
 function changeColor(hexColor) {
   color.textContent = hexColor;
   document.querySelector(".colorWrapper").style.backgroundColor = hexColor;
 }
 
-function generateColor() {
-  loopColors();
-}
-
-function getRandomNumber() {
-  return Math.floor(Math.random() * hexaCodes.length);
-}
+// function generateColor() {
+//   loopColors();
+// }
 
 function colorBackward(hexColor) {
   if (backwardStack.length < 2) {
     console.log("==== NOTHING IN BACKWARD ====");
-    console.log(Object.keys(backwardStack));
+    console.log(backwardStack[0]);
   } else {
     console.log("==== GREATER THAN 2 IN BACKWARD ====");
     console.log(backwardStack);

@@ -5,8 +5,10 @@
 .colorWrapper {
   background-color: #a8dadc;
   font-size: 2em;
+  border-radius: 50%;
   width: 500px;
   height: 500px;
+  text-align: center;
 }
 .color {
   color: #ffffff;
