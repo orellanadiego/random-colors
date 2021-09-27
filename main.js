@@ -10,7 +10,7 @@ const forward = document.querySelector(".btn-forward");
 const hexColors = [];
 let forwardStack = [];
 let backwardStack = [];
-let currentColor = [];
+let currentColor = "";
 
 /* =======
 BUTTON LISTENERS
@@ -46,12 +46,12 @@ function loopColors() {
   // console.log("Value of color in array: ", Object.keys(hexColors));
   console.log("Quantity of codes in array: ", hexColors.length);
   changeColor(hexColor);
+  currentColor = hexColor;
+  console.log("This is current color: " + currentColor);
 
-  if (generate) {
-    backwardStack.push(hexColor);
+  if (currentColor) {
+    backwardStack.push(currentColor);
   }
-  currentColor.push(hexColor);
-  console.log("This is current color: " + currentColor[0]);
 }
 // Get a random number based on lenght of array and convert it to a integer.
 function getRandomNumber() {
@@ -67,28 +67,16 @@ function changeColor(hexColor) {
 //   loopColors();
 // }
 
-function colorBackward(hexColor) {
-  if (backwardStack.length < 2) {
-    console.log("==== NOTHING IN BACKWARD ====");
-    console.log(backwardStack[0]);
-  } else {
-    console.log("==== GREATER THAN 2 IN BACKWARD ====");
-    console.log(backwardStack);
-    forwardStack.push(currentColor);
-    console.log((currentColor = backwardStack.pop()));
-    changeColor();
-  }
+function colorBackward() {
+  console.log("==== BACKWARD IS WORKING ====");
+  forwardStack.push(currentColor);
+  console.log((currentColor = backwardStack.pop()));
+  changeColor(currentColor);
 }
 
 function colorForward() {
-  if (!forwardStack.length) {
-    console.log("==== SOMETHING IN FORWARD ====");
-    console.log(forwardStack);
-    backwardStack.push(currentColor);
-    console.log((currentColor = forwardStack.pop()));
-    changeColor();
-  } else {
-    console.log("==== NOTHING IN FORDWARD ====");
-    console.log(Object.keys(forwardStack));
-  }
+  console.log("==== FORDWARD IS WORKING ====");
+  backwardStack.push(currentColor);
+  console.log((currentColor = forwardStack.pop()));
+  changeColor(currentColor);
 }
