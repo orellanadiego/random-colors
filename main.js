@@ -12,6 +12,8 @@ let forwardStack = [];
 let backwardStack = [];
 let currentColor = "";
 
+isBackwardEmpty();
+
 /* =======
 BUTTON LISTENERS
 ======= */
@@ -38,12 +40,10 @@ function loopColors() {
     hexColor += hexaCodes[getRandomNumber()];
   }
   hexColors.push(hexColor);
-  // backwardStack.push(hexColor);
 
   console.log("====");
   console.log("New color: ", hexColor);
   console.log(hexColors);
-  // console.log("Value of color in array: ", Object.keys(hexColors));
   console.log("Quantity of codes in array: ", hexColors.length);
   changeColor(hexColor);
   currentColor = hexColor;
@@ -67,11 +67,24 @@ function changeColor(hexColor) {
 //   loopColors();
 // }
 
+function isBackwardEmpty() {
+  if (backwardStack.length < 1) {
+    backward.disabled = true;
+    console.log("Less than 1 in backwardStack array");
+    console.log(backwardStack);
+  } else {
+    backward.disabled = false;
+    console.log("At least 1 item in backwardStack array.");
+    console.log(backwardStack);
+  }
+}
+
 function colorBackward() {
   console.log("==== BACKWARD IS WORKING ====");
   forwardStack.push(currentColor);
   console.log((currentColor = backwardStack.pop()));
   changeColor(currentColor);
+  console.log(backwardStack.length);
 }
 
 function colorForward() {
@@ -80,3 +93,5 @@ function colorForward() {
   console.log((currentColor = forwardStack.pop()));
   changeColor(currentColor);
 }
+
+// #176094
