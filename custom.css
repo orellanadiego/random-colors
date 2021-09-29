@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+  height: 100vh;
+}
 .container {
   padding: 2em;
 }
@@ -24,7 +27,7 @@
   padding: 10px;
 }
 .footerWrapper {
-  background: #83bfd0;
+  background: #176094;
   color: #fff;
   padding: 20px;
   text-align: center;
