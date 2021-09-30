@@ -12,8 +12,6 @@ let forwardStack = [];
 let backwardStack = [];
 let currentColor = "";
 
-isBackwardEmpty();
-
 /* =======
 BUTTON LISTENERS
 ======= */
@@ -23,10 +21,12 @@ generate.addEventListener("click", function () {
 
 backward.addEventListener("click", function () {
   colorBackward();
+  isBackwardEmpty();
 });
 
 forward.addEventListener("click", function () {
   colorForward();
+  // isBackwardEmpty();
 });
 
 /* =======
@@ -42,16 +42,17 @@ function loopColors() {
   hexColors.push(hexColor);
 
   console.log("====");
-  console.log("New color: ", hexColor);
   console.log(hexColors);
-  console.log("Quantity of codes in array: ", hexColors.length);
+  console.log("Codes in array: " + hexColors.length);
+
   changeColor(hexColor);
   currentColor = hexColor;
-  console.log("This is current color: " + currentColor);
+  console.log("Current color: " + currentColor);
 
   if (currentColor) {
     backwardStack.push(currentColor);
   }
+  isBackwardEmpty();
 }
 // Get a random number based on lenght of array and convert it to a integer.
 function getRandomNumber() {
@@ -63,34 +64,36 @@ function changeColor(hexColor) {
   document.querySelector(".colorWrapper").style.backgroundColor = hexColor;
 }
 
-// function generateColor() {
-//   loopColors();
-// }
-
 function isBackwardEmpty() {
-  if (backwardStack.length < 1) {
-    backward.disabled = true;
-    console.log("Less than 1 in backwardStack array");
-    console.log(backwardStack);
-  } else {
-    backward.disabled = false;
-    console.log("At least 1 item in backwardStack array.");
-    console.log(backwardStack);
-  }
+  console.log(backwardStack.length);
+  return backwardStack.length === 0
+    ? (backward.disabled = true)
+    : (backward.disabled = false);
+  // if (backwardStack.length < 1) {
+  //   backward.disabled = true;
+  //   console.log("Less than 1 in backwardStack array");
+  //   console.log(backwardStack);
+  // } else {
+  //   backward.disabled = false;
+  //   console.log("At least 1 item in backwardStack array.");
+  //   console.log(backwardStack);
+  // }
 }
 
 function colorBackward() {
   console.log("==== BACKWARD IS WORKING ====");
   forwardStack.push(currentColor);
-  console.log((currentColor = backwardStack.pop()));
-  changeColor(currentColor);
+  currentColor = backwardStack.pop();
   console.log(backwardStack.length);
+  changeColor(currentColor);
 }
 
 function colorForward() {
   console.log("==== FORDWARD IS WORKING ====");
   backwardStack.push(currentColor);
-  console.log((currentColor = forwardStack.pop()));
+
+  currentColor = forwardStack.pop();
+  console.log(forwardStack.length);
   changeColor(currentColor);
 }
 
