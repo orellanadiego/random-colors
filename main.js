@@ -7,7 +7,7 @@ const color = document.querySelector(".color");
 const backward = document.querySelector(".btn-backward");
 const forward = document.querySelector(".btn-forward");
 
-const hexColors = [];
+let hexColors = [];
 let forwardStack = [];
 let backwardStack = [];
 let currentColor = "";
@@ -22,11 +22,13 @@ generate.addEventListener("click", function () {
 backward.addEventListener("click", function () {
   colorBackward();
   isBackwardEmpty();
+  isForwardEmpty();
 });
 
 forward.addEventListener("click", function () {
   colorForward();
-  // isBackwardEmpty();
+  isBackwardEmpty();
+  isForwardEmpty();
 });
 
 /* =======
@@ -53,6 +55,7 @@ function loopColors() {
     backwardStack.push(currentColor);
   }
   isBackwardEmpty();
+  isForwardEmpty();
 }
 // Get a random number based on lenght of array and convert it to a integer.
 function getRandomNumber() {
@@ -65,36 +68,30 @@ function changeColor(hexColor) {
 }
 
 function isBackwardEmpty() {
-  console.log(backwardStack.length);
-  return backwardStack.length === 0
+  return backwardStack.length < 1
     ? (backward.disabled = true)
     : (backward.disabled = false);
-  // if (backwardStack.length < 1) {
-  //   backward.disabled = true;
-  //   console.log("Less than 1 in backwardStack array");
-  //   console.log(backwardStack);
-  // } else {
-  //   backward.disabled = false;
-  //   console.log("At least 1 item in backwardStack array.");
-  //   console.log(backwardStack);
-  // }
+}
+
+function isForwardEmpty() {
+  return forwardStack.length < 1
+    ? (forwardStack.disabled = true)
+    : (forwardStack.disabled = false);
 }
 
 function colorBackward() {
   console.log("==== BACKWARD IS WORKING ====");
   forwardStack.push(currentColor);
   currentColor = backwardStack.pop();
-  console.log(backwardStack.length);
+  console.log("colors in backwardStack: " + backwardStack.length);
   changeColor(currentColor);
 }
 
 function colorForward() {
   console.log("==== FORDWARD IS WORKING ====");
   backwardStack.push(currentColor);
-
   currentColor = forwardStack.pop();
-  console.log(forwardStack.length);
+  console.log("colors in backwardStack: " + backwardStack.length);
+  console.log("colors in forwardStack: " + forwardStack.length);
   changeColor(currentColor);
 }
-
-// #176094
