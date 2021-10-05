@@ -47,16 +47,18 @@ function loopColors() {
   console.log(hexColors);
   console.log("Codes in array: " + hexColors.length);
 
+  if (currentColor) {
+    backwardStack.push(currentColor);
+  }
+
   changeColor(hexColor);
   currentColor = hexColor;
   console.log("Current color: " + currentColor);
 
-  if (currentColor) {
-    backwardStack.push(currentColor);
-  }
   isBackwardEmpty();
   isForwardEmpty();
 }
+
 // Get a random number based on lenght of array and convert it to a integer.
 function getRandomNumber() {
   return Math.floor(Math.random() * hexaCodes.length);
@@ -85,6 +87,15 @@ function colorBackward() {
   currentColor = backwardStack.pop();
   console.log("colors in backwardStack: " + backwardStack.length);
   changeColor(currentColor);
+
+  // for (let color of hexColors) {
+  //   console.log(color);
+  // }
+  // if (backwardStack.length < 1) {
+  //   backward.disabled = true;
+  // } else {
+  //   for (let color in hexColors) console.log(hexColors[color]);
+  // }
 }
 
 function colorForward() {
