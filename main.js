@@ -27,8 +27,8 @@ backward.addEventListener("click", function () {
 
 forward.addEventListener("click", function () {
   colorForward();
-  isBackwardEmpty();
   isForwardEmpty();
+  isBackwardEmpty();
 });
 
 /* =======
@@ -75,8 +75,8 @@ function isBackwardEmpty() {
 
 function isForwardEmpty() {
   return forwardStack.length < 1
-    ? (forwardStack.disabled = true)
-    : (forwardStack.disabled = false);
+    ? (forward.disabled = true)
+    : (forward.disabled = false);
 }
 
 function colorBackward() {
