@@ -12,6 +12,12 @@ let forwardStack = [];
 let backwardStack = [];
 let currentColor = "";
 
+/* ======
+Check if buttons: Backward and Forward, are empty.
+======= */
+isBackwardEmpty();
+isForwardEmpty();
+
 /* =======
 BUTTON LISTENERS
 ======= */
@@ -86,16 +92,8 @@ function colorBackward() {
   forwardStack.push(currentColor);
   currentColor = backwardStack.pop();
   console.log("colors in backwardStack: " + backwardStack.length);
+  console.log("colors in forwardStack: " + forwardStack.length);
   changeColor(currentColor);
-
-  // for (let color of hexColors) {
-  //   console.log(color);
-  // }
-  // if (backwardStack.length < 1) {
-  //   backward.disabled = true;
-  // } else {
-  //   for (let color in hexColors) console.log(hexColors[color]);
-  // }
 }
 
 function colorForward() {
