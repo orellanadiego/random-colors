@@ -7,7 +7,6 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  /* border: 1px solid red; */
 }
 body {
   font-family: var(--ff-main);
@@ -19,15 +18,13 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-weight: 400;
   margin: 0 auto;
-  width: 100%;
   max-width: 750px;
-  padding: 2em;
+  padding: 1.3em;
+  width: 100%;
 }
 .colorWrapper {
   background-color: #ccc;
-  /* border-radius: 50%; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +32,7 @@ h1 {
   height: 500px;
   width: 500px;
 }
-.color {
+.colorText {
   color: #ffffff;
   display: inline-block;
   margin: 0 auto;
@@ -49,9 +46,8 @@ h1 {
   background: #000;
   border: none;
   border-radius: 450px;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
-  font-weight: 400;
   margin: 10px;
   padding: 10px;
   text-transform: uppercase;
@@ -59,10 +55,8 @@ h1 {
 .btn-backward,
 .btn-forward {
   background: transparent;
-  font-size: 30px;
   border: none;
-  border-radius: 50%;
-  /* padding: 10px; */
+  font-size: 30px;
 }
 .btn-backward:hover,
 .btn-forward:hover {
