@@ -3,7 +3,7 @@ ALL VARIABLES
 ======= */
 const hexaCodes = ["A", "B", "C", "D", "E", "F", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const generate = document.querySelector(".btn-generate");
-const color = document.querySelector(".color");
+const color = document.querySelector(".colorText");
 const backward = document.querySelector(".btn-backward");
 const forward = document.querySelector(".btn-forward");
 
@@ -13,7 +13,7 @@ let backwardStack = [];
 let currentColor = "";
 
 /* ======
-Check if buttons: Backward and Forward, are empty.
+Check if buttons: Backward and Forward are empty.
 ======= */
 isBackwardEmpty();
 isForwardEmpty();
@@ -44,14 +44,12 @@ ALL FUNCTIONS
 // loop for new color.
 function loopColors() {
   let hexColor = "#";
+
   for (let i = 0; i < 6; i++) {
     hexColor += hexaCodes[getRandomNumber()];
   }
-  hexColors.push(hexColor);
 
-  console.log("====");
-  console.log(hexColors);
-  console.log("Codes in array: " + hexColors.length);
+  hexColors.push(hexColor);
 
   if (currentColor) {
     backwardStack.push(currentColor);
@@ -59,13 +57,12 @@ function loopColors() {
 
   changeColor(hexColor);
   currentColor = hexColor;
-  console.log("Current color: " + currentColor);
 
   isBackwardEmpty();
   isForwardEmpty();
 }
 
-// Get a random number based on lenght of array and convert it to a integer.
+// Get a random number based on length of array and convert it to a integer.
 function getRandomNumber() {
   return Math.floor(Math.random() * hexaCodes.length);
 }
@@ -88,19 +85,13 @@ function isForwardEmpty() {
 }
 
 function colorBackward() {
-  console.log("==== BACKWARD IS WORKING ====");
   forwardStack.push(currentColor);
   currentColor = backwardStack.pop();
-  console.log("colors in backwardStack: " + backwardStack.length);
-  console.log("colors in forwardStack: " + forwardStack.length);
   changeColor(currentColor);
 }
 
 function colorForward() {
-  console.log("==== FORDWARD IS WORKING ====");
   backwardStack.push(currentColor);
   currentColor = forwardStack.pop();
-  console.log("colors in backwardStack: " + backwardStack.length);
-  console.log("colors in forwardStack: " + forwardStack.length);
   changeColor(currentColor);
 }
